@@ -15,17 +15,17 @@
 // builder approach. Create a Pusher with New and then add the various options
 // by using its methods, finally calling Add or Push, like this:
 //
-//    // Easy case:
-//    push.New("http://example.org/metrics", "my_job").Gatherer(myRegistry).Push()
+//	// Easy case:
+//	push.New("http://example.org/metrics", "my_job").Gatherer(myRegistry).Push()
 //
-//    // Complex case:
-//    push.New("http://example.org/metrics", "my_job").
-//        Collector(myCollector1).
-//        Collector(myCollector2).
-//        Grouping("zone", "xy").
-//        Client(&myHTTPClient).
-//        BasicAuth("top", "secret").
-//        Add()
+//	// Complex case:
+//	push.New("http://example.org/metrics", "my_job").
+//	    Collector(myCollector1).
+//	    Collector(myCollector2).
+//	    Grouping("zone", "xy").
+//	    Client(&myHTTPClient).
+//	    BasicAuth("top", "secret").
+//	    Add()
 //
 // See the examples section for more detailed examples.
 //
@@ -108,7 +108,7 @@ func New(url, job string) *Pusher {
 		gatherers:  prometheus.Gatherers{reg},
 		registerer: reg,
 		client:     &http.Client{},
-		expfmt:     expfmt.FmtProtoDelim,
+		expfmt:     expfmt.NewFormat(expfmt.TypeProtoDelim),
 	}
 }
 
